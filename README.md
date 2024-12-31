@@ -4,4 +4,4 @@
 python 3.10
 
 ### Require library
-https
+httpx
