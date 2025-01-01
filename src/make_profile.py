@@ -13,7 +13,7 @@ folder = "profile"
 if not os.path.exists(folder):
     os.makedirs(folder)
 
-def generate_profile_card(handle: str):
+def generate_profile_card(handle: str, opt: int):
     output_file = f"profile/{handle}_profile.png"
     
     # 사용자 정보 가져오기
@@ -81,9 +81,11 @@ def generate_profile_card(handle: str):
     current_length = int(bar_width * (progress / 100))
     draw.rectangle([bar_start, bar_end], fill=(255, 255, 255, 128))
     draw.rectangle([bar_start, (bar_start[0] + current_length, bar_end[1])], fill=(255, 255, 255, 255))
-
+    
     card = Image.alpha_composite(card, overlay)
     
+    if (opt == 2):
+        card.show()
+    
     card.save(output_file)
-    print(f"Profile card saved as '{output_file}'")
-    card.show()
+    print(f"프로필 카드 저장 완료! (경로 : '{output_file}')")
