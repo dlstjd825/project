@@ -15,11 +15,19 @@ def get_ratings_progress(handle: str):
     user_info = get_user_info(handle)
     idx = user_info['now_tier']
     
-    prev_rating = TIER_RATES[idx]
-    next_rating = TIER_RATES[idx+1]
-    
-    now_rating = f"{user_info['rating']}/{next_rating}"
-    
-    progress = int(user_info['rating'] * 100 / next_rating)
+    if idx!=31:
+        prev_rating = TIER_RATES[idx]
+        next_rating = TIER_RATES[idx+1]
+        
+        gap = next_rating - prev_rating
+        current = user_info['rating'] - prev_rating
+        
+        now_rating = f"{user_info['rating']:,} / {next_rating:,}"
+        
+        progress = int(round(current * 100 / gap,0))
+    else:
+        # 마스터는 따로 처리
+        now_rating = f"{user_info['rating']:,}"
+        progress = 100
     
     return now_rating, progress

@@ -1,5 +1,16 @@
 import httpx
 
+TIERS = (
+    "Unrated",
+    "Bronze 5", "Bronze 4", "Bronze 3", "Bronze 2", "Bronze 1",
+    "Silver 5", "Silver 4", "Silver 3", "Silver 2", "Silver 1",
+    "Gold 5", "Gold 4", "Gold 3", "Gold 2", "Gold 1",
+    "Platinum 5", "Platinum 4", "Platinum 3", "Platinum 2", "Platinum 1",
+    "Diamond 5", "Diamond 4", "Diamond 3", "Diamond 2", "Diamond 1",
+    "Ruby 5", "Ruby 4", "Ruby 3", "Ruby 2", "Ruby 1",
+    "Master"
+)
+
 def get_user_info(handle: str):
     # API URL
     api_url = f"https://solved.ac/api/v3/user/show?handle={handle}"
@@ -10,31 +21,32 @@ def get_user_info(handle: str):
         if response.status_code == 200:
             user_info = response.json()
             
-            # 티어 숫자를 가져옴
-            tier_number = user_info['tier']
-            
-            # 티어 매핑
-            tier_mapping = {
-                1: "Bronze V", 2: "Bronze IV", 3: "Bronze III", 4: "Bronze II", 5: "Bronze I",
-                6: "Silver V", 7: "Silver IV", 8: "Silver III", 9: "Silver II", 10: "Silver I",
-                11: "Gold V", 12: "Gold IV", 13: "Gold III", 14: "Gold II", 15: "Gold I",
-                16: "Platinum V", 17: "Platinum IV", 18: "Platinum III", 19: "Platinum II", 20: "Platinum I",
-                21: "Diamond V", 22: "Diamond IV", 23: "Diamond III", 24: "Diamond II", 25: "Diamond I",
-                26: "Ruby V", 27: "Ruby IV", 28: "Ruby III", 29: "Ruby II", 30: "Ruby I",
-                31: "Challenger"
-            }
+            # 티어 인덱스 가져오기
+            tier_idx = user_info['tier']
             
             # 사람이 읽을 수 있는 티어로 변환
-            tier_name = tier_mapping.get(tier_number, "Unknown")
+            tier_name = TIERS[tier_idx]
             
             # 점수 정보 가져오기
             rating = user_info.get('rating', 0)
+            
+            # 맞은 문제 수 가져오기
+            solved_count = user_info.get('solvedCount', 0)
+            
+            # 클래스 정보 가져오기
+            user_class = user_info.get('class', 0)
+            
+            # 프로필사진 url
+            profile_image_url = user_info.get('profileImageUrl', None)
             
             return {
                 "handle": handle,
                 "tier": tier_name,
                 "rating": rating,
-                "now_tier":tier_number,
+                "now_tier":tier_idx,
+                "solved":solved_count,
+                "class":user_class,
+                "profile_image":profile_image_url,
             }
         else:
             return {"error": f"Failed to fetch data: {response.status_code}"}
