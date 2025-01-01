@@ -2,12 +2,12 @@ import httpx
 
 TIERS = (
     "Unrated",
-    "Bronze 5", "Bronze 4", "Bronze 3", "Bronze 2", "Bronze 1",
-    "Silver 5", "Silver 4", "Silver 3", "Silver 2", "Silver 1",
-    "Gold 5", "Gold 4", "Gold 3", "Gold 2", "Gold 1",
-    "Platinum 5", "Platinum 4", "Platinum 3", "Platinum 2", "Platinum 1",
-    "Diamond 5", "Diamond 4", "Diamond 3", "Diamond 2", "Diamond 1",
-    "Ruby 5", "Ruby 4", "Ruby 3", "Ruby 2", "Ruby 1",
+    "Bronze V", "Bronze IV", "Bronze III", "Bronze II", "Bronze I",
+    "Silver V", "Silver IV", "Silver III", "Silver II", "Silver I",
+    "Gold V", "Gold IV", "Gold III", "Gold II", "Gold I",
+    "Platinum V", "Platinum IV", "Platinum III", "Platinum II", "Platinum I",
+    "Diamond V", "Diamond IV", "Diamond III", "Diamond II", "Diamond I",
+    "Ruby V", "Ruby IV", "Ruby III", "Ruby II", "Ruby I",
     "Master"
 )
 

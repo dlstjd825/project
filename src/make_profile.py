@@ -51,7 +51,7 @@ def generate_profile_card(handle: str):
     mask_draw.ellipse((0, 0, 333, 333), fill=255)
     card.paste(profile_img, (75, 61), mask)
     
-    if tier=='Unrated' or tier=='Unknown':
+    if tier=='Unknown':
         card.save(output_file)
         print(f"Profile card saved as '{output_file}'")
         return 0
@@ -68,14 +68,14 @@ def generate_profile_card(handle: str):
     draw.text((790, 305), f"{solved:,}", font=font_info, fill=(255, 255, 255))  # 푼문제수
     draw.text((790, 378), str(user_class), font=font_info, fill=(255, 255, 255))# 클래스
     draw.text((440, 492), now_rating, font=font_small, fill=(255, 255, 255))    # 현재레이팅/다음레이팅
-    draw.text((910, 459), f"{progress}%", font=font_small, fill=(255, 255, 255))# 진행도
+    draw.text((850, 459), f"{progress}%", font=font_small, fill=(255, 255, 255))# 진행도
     
     # 진행도 막대
     overlay = Image.new("RGBA", card.size, (255, 255, 255, 0))  # 투명 레이어 생성
     draw = ImageDraw.Draw(overlay)
     
     bar_start = (440, 470)  # 바의 시작 좌표 (x, y)
-    bar_end = (900, 480)   # 바의 끝 좌표 (x, y) (100% 길이 기준)
+    bar_end = (840, 480)   # 바의 끝 좌표 (x, y) (100% 길이 기준)
     bar_width = bar_end[0] - bar_start[0]
     
     current_length = int(bar_width * (progress / 100))
