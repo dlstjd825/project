@@ -68,7 +68,7 @@ def generate_profile_card(handle: str):
     draw.text((790, 305), f"{solved:,}", font=font_info, fill=(255, 255, 255))  # 푼문제수
     draw.text((790, 378), str(user_class), font=font_info, fill=(255, 255, 255))# 클래스
     draw.text((440, 492), now_rating, font=font_small, fill=(255, 255, 255))    # 현재레이팅/다음레이팅
-    draw.text((905, 459), f"{progress}%", font=font_small, fill=(255, 255, 255))# 진행도
+    draw.text((910, 459), f"{progress}%", font=font_small, fill=(255, 255, 255))# 진행도
     
     # 진행도 막대
     overlay = Image.new("RGBA", card.size, (255, 255, 255, 0))  # 투명 레이어 생성
