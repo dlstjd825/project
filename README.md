@@ -1,6 +1,6 @@
 # solved.ac 프로필 카드 만들기!
 
-![예시 이미지](example/igomae_profile.png)
+<img src="example/igomae_profile.png" alt="description" width="300" height="200">
 
 ## python ver
 python 3.10
