@@ -8,7 +8,7 @@ python 3.10
 ## Require Library
 `httpx`, `PIL`
 
-## How To Use
+## How to Use
 1. main.py를 실행시킵니다.    
 2. BOJ 아이디를 입력합니다.     
 2. 프로필 카드 완성~     
